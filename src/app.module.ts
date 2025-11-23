@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { OpenweathermapService } from './openweathermap/openweathermap.service';
 import { OpenweathermapController } from './openweathermap/openweathermap.controller';
+import { RedisService } from './redis/redis.service';
+import { OpenweathermapModule } from './openweathermap/openweathermap.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController, OpenweathermapController],
-  providers: [AppService, OpenweathermapService],
+  imports: [OpenweathermapModule],
+  controllers: [OpenweathermapController],
+  providers: [OpenweathermapService, RedisService],
 })
 export class AppModule { }
