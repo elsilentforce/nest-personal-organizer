@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { RedisService } from 'src/redis/redis.service';
 import { env } from 'process';
+import { CurrentWeatherResponse } from './interfaces/current-weater-response.interface';
 
 @Injectable()
 export class OpenweathermapService {
@@ -11,10 +12,10 @@ export class OpenweathermapService {
   private baseUrl: string = 'https://api.openweathermap.org/data/2.5';
   private apiKey: string = env.OPENWEATHERMAP_API_KEY ?? '';
 
-  async getCurrentWeather(lat: number, lon: number) {
+  async getCurrentWeather(lat: number, lon: number): Promise<CurrentWeatherResponse> {
     try {
       const currentWeatherUrl = `${this.baseUrl}/weather?lat=${lat}&lon=${lon}&units=metric&appid=${this.apiKey}`;
-      const cacheKey = `${lat}:${lon}`;
+      const cacheKey = `currentWeather_${lat}:${lon}`;
 
       // Early return if the query is cached
       const cachedData = await this.redisService.get(cacheKey);
@@ -34,7 +35,7 @@ export class OpenweathermapService {
       await this.redisService.setKey(cacheKey, JSON.stringify(data), 3600)
       // .then(() => console.log(`Cache set for ${cacheKey}`));
 
-      return data;
+      return data satisfies CurrentWeatherResponse;
     }
     catch (error) {
       throw error;
