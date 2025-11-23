@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { RedisService } from 'src/redis/redis.service';
+import { RedisService } from '../redis/redis.service';
 import { env } from 'process';
 import { CurrentWeatherResponse } from './interfaces/current-weater-response.interface';
 
