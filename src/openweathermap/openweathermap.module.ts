@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { RedisModule } from 'src/redis/redis.module';
+import { RedisModule } from '../redis/redis.module';
 import { OpenweathermapController } from './openweathermap.controller';
 import { OpenweathermapService } from './openweathermap.service';
 
