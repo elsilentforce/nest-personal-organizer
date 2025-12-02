@@ -76,7 +76,7 @@ describe('OpenweathermapService', () => {
         expect(result).toEqual(mockWeatherData);
       });
 
-      it('caches the api response for 1 hour', async () => {
+      it('caches the API response for 1 hour', async () => {
         mockFetch.mockResolvedValue(mockOkResponse);
         await service.getCurrentWeather(lat, lon);
         expect(mockRedisService.setKey).toHaveBeenCalledWith(
