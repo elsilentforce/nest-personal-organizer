@@ -5,6 +5,7 @@
 
 # DB data
 /redis
+/postgres
 
 # Logs
 logs
