@@ -8,6 +8,17 @@ services:
   #     - REDIS_HOST=redis
   #   depends_on:
   #     - redis
+  postgres:
+    image: postgres:18.1-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./postgres:/var/lib/postgresql/18/docker
+    ports:
+      - 5432:5432
   redis:
     image: redis:8.2.2
     ports:
