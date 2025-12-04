@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client"
-  output = "../src/generated/prisma
+  output = "../src/generated/prisma"
   moduleFormat = "cjs"
 }
 
@@ -12,6 +12,6 @@ model User {
   id        Int       @id @default(autoincrement())
   email     String    @unique
   username  String    @unique
-  createdAt Datetime  @default(now())
-  updatedAt Datetime  @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
