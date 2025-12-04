@@ -12,7 +12,5 @@ services:
     image: redis:8.2.2
     ports:
       - 6379:6379
-    expose:
-      - 6379
     volumes:
       - ./redis:/data
